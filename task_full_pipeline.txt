@@ -1,0 +1,13 @@
+ArbeitNow API
+    ↓
+extract jobs
+    ↓
+store raw payload
+    ↓
+transform fields
+    ↓
+extract skills
+    ↓
+store normalized job
+    ↓
+store skill mappings

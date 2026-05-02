@@ -1,0 +1,106 @@
+Collect job posts,
+clean them 
+extract skills
+store them, 
+expose analytics through an API.
+
+
+Final resume angle:
+Data Engineering + ETL + FastAPI + PostgreSQL + Docker + Airflow/dbt.
+
+Phase 1 
+ETL API: Collect jobs from https://www.arbeitnow.com/api/job-board-api
+Extract fields: title, company, location, remote, description, tags, date
+
+Raw storage
+Store raw job data in PostgreSQL.
+Table:
+raw_jobs
+
+id
+source
+source_job_id
+raw_payload JSONB
+fetched_at
+
+Transform layer
+Clean and normalize into:
+
+jobs
+
+id
+title
+company
+location
+country
+remote_type
+description
+job_url
+posted_at
+source
+created_at
+
+
+Skill extraction
+Extract skills from title + description.
+
+skills list:
+Java, Python, Spring Boot, FastAPI, Django, Docker, Kubernetes, AWS, Azure, SQL, PostgreSQL, Kafka, Airflow, Spark, React, MLflow, PyTorch, scikit-learn, LangChain, LLM, RAG.
+
+
+Tables:
+skills
+
+id
+name
+
+job_skills
+
+job_id
+skill_id
+
+
+Analytics API
+FastAPI endpoints:
+GET /jobs
+GET /jobs/search?skill=java&location=stuttgart
+GET /analytics/top-skills
+GET /analytics/top-cities
+GET /analytics/source-counts
+GET /analytics/skill-trends
+
+
+Docker
+Run everything with:
+app
+postgres
+
+Docker
+Run everything with:
+app
+postgres
+
+
+jobpulse/
+app/
+main.py
+api/
+routes_jobs.py
+routes_analytics.py
+db/
+database.py
+models.py
+schemas.py
+etl/
+extractors/
+arbeitnow.py
+remotive.py
+transform.py
+load.py
+skill_extractor.py
+run_pipeline.py
+tests/
+docker-compose.yml
+Dockerfile
+requirements.txt
+README.md
